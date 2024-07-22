@@ -1,0 +1,17 @@
+services:
+    db:
+        container_name: pocketbase
+        build:
+            context: .
+            dockerfile: dockerfile.pocketbase
+            args:
+                - PB_VERSION=${PB_VERSION}
+                - PB_ENCRYPTION_KEY=${PB_ENCRYPTION_KEY}
+        env_file:
+            - .env
+        volumes:
+            - pocketbase-data:/pb/pb_data
+        ports:
+            - 8080:8080
+volumes:
+    pocketbase-data:
